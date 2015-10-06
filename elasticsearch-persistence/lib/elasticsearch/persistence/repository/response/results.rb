@@ -9,6 +9,7 @@ module Elasticsearch
         #
         class Results
           include Enumerable
+          include Pagination::Kaminari
 
           attr_reader :repository
 
