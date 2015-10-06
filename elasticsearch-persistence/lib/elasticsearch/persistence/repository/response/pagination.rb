@@ -16,12 +16,10 @@ module Elasticsearch
 
               # Include the Kaminari paging methods in results and records
               #
-              Elasticsearch::Model::Response::Results.__send__ :include, ::Kaminari::ConfigurationMethods::ClassMethods
-              Elasticsearch::Model::Response::Results.__send__ :include, ::Kaminari::PageScopeMethods
-              Elasticsearch::Model::Response::Records.__send__ :include, ::Kaminari::PageScopeMethods
+              Elasticsearch::Persistence::Repository::Response::Results.__send__ :include, ::Kaminari::ConfigurationMethods::ClassMethods
+              Elasticsearch::Persistence::Repository::Response::Results.__send__ :include, ::Kaminari::PageScopeMethods
 
-              Elasticsearch::Model::Response::Results.__send__ :delegate, :limit_value, :offset_value, :total_count, to: :response
-              Elasticsearch::Model::Response::Records.__send__ :delegate, :limit_value, :offset_value, :total_count, to: :response
+              Elasticsearch::Persistence::Repository::Response::Results.__send__ :delegate, :limit_value, :offset_value, :total_count, to: :response
 
               base.class_eval <<-RUBY, __FILE__, __LINE__ + 1
                 # Define the `page` Kaminari method
